@@ -26,9 +26,14 @@ spring:
     console:
       enabled: true
       path: /h2-console
-  #flyway:
-  #  baseline-on-migrate: true
-  #  enabled: true
+  flyway:
+    baseline-on-migrate: true
+    enabled: true
+  cloud:
+    discovery:
+      enabled: false
+    config:
+      enabled: false
 
 logging:
   level:
