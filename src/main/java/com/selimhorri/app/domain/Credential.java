@@ -68,7 +68,7 @@ public final class Credential extends AbstractMappedEntity implements Serializab
 	private User user;
 	
 	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "credential")
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "credential")
 	private Set<VerificationToken> verificationTokens;
 	
 }
