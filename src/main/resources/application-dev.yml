@@ -31,7 +31,7 @@ spring:
     enabled: true
   cloud:
     discovery:
-      enabled: false
+      enabled: true  # Habilitado para registro en Eureka
     config:
       enabled: false
 
