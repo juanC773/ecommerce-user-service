@@ -218,7 +218,9 @@ jobs:
     name: Run E2E Tests
     needs: deploy
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/stage')
+    if: |
+      github.event_name != 'pull_request' &&
+      (github.ref == 'refs/heads/stage' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     
     steps:
     - name: Checkout API Gateway Repository (para E2E tests)
@@ -260,7 +262,9 @@ jobs:
     name: Run Performance Tests (Locust)
     needs: deploy
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' && (github.ref == 'refs/heads/stage')
+    if: |
+      github.event_name != 'pull_request' &&
+      (github.ref == 'refs/heads/stage' || github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     
     steps:
     - name: Checkout API Gateway Repository (para performance tests)
@@ -311,7 +315,7 @@ jobs:
 
   release-notes:
     name: Generate Release Notes
-    needs: deploy
+    needs: [deploy, e2e-tests, performance-tests]
     runs-on: ubuntu-latest
     if: |
       (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master') &&
